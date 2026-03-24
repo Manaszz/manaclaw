@@ -1,9 +1,6 @@
 # Reference projects (not part of manaclaw)
 reference/
-
 # Research materials
-research/
-exported-assets*/
 
 # Dependencies
 node_modules/
