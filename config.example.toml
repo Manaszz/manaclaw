@@ -1,0 +1,58 @@
+# ManaClaw Configuration
+# Copy to config.toml and adjust for your environment.
+
+[general]
+assistant_name = "ManaClaw"
+trigger_pattern = "@ManaClaw"
+poll_interval_ms = 2000
+scheduler_poll_interval_ms = 60000
+max_concurrent_containers = 5
+container_timeout_ms = 1800000    # 30 min
+idle_timeout_ms = 300000          # 5 min -- switch to warm serve mode after this
+
+[server]
+host = "0.0.0.0"
+port = 8080
+api_key = ""                      # empty = no auth required; set for production
+
+[database]
+provider = "sqlite"               # "sqlite" | "postgres"
+
+[database.sqlite]
+path = "store/manaclaw.db"
+
+[database.postgres]
+host = "localhost"
+port = 5432
+database = "manaclaw"
+user = "manaclaw"
+password = ""                     # or set MANACLAW_DB_PASSWORD env var
+
+[container]
+image = "manaclaw-agent:latest"
+runtime = "docker"                # "docker" | "podman"
+
+[provider]
+name = "ollama"                   # "ollama" | "vllm" | "openai" | "openrouter" | custom
+base_url = "http://localhost:11434"
+api_key = ""
+model = "qwen2.5:14b"
+fallback_model = ""
+
+[memory]
+mode = "lite"                     # "off" | "lite" | "full"
+extraction_model = ""             # model for fact extraction; defaults to provider.model
+embedding_provider = ""           # "ollama" | "openai" | custom; empty = skip embeddings
+
+[memory.mem0]
+enabled = false
+api_key = ""
+base_url = ""
+
+[security]
+mount_allowlist_path = "~/.config/manaclaw/mount-allowlist.json"
+blocked_patterns = [
+  ".ssh", ".gnupg", ".aws", ".azure", ".gcloud", ".kube", ".docker",
+  "credentials", ".env", ".netrc", ".npmrc",
+  "id_rsa", "id_ed25519", "private_key", ".secret"
+]

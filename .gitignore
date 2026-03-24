@@ -1,0 +1,43 @@
+# Reference projects (not part of manaclaw)
+reference/
+
+# Research materials
+research/
+exported-assets*/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Runtime data
+store/
+data/
+logs/
+groups/
+
+# Database files
+*.db
+*.db-journal
+*.db-wal
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+config.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test coverage
+coverage/
