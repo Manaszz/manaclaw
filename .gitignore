@@ -29,6 +29,8 @@ groups/
 config.toml
 
 # IDE
+.cursor/*
+!.cursor/plans/
 .vscode/
 .idea/
 *.swp
